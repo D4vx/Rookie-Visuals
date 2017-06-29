@@ -1,9 +1,8 @@
-// Program : Particale System Re-Write 
+// Program : Particle System Re-Write 
 // Project : Rookie 2013 Fashion Show Twitter Feed
 // Author  : Dave Brown
 
 // Revision : Updates and optimization tweaks courtesy of Stefan Marks
-
 
 // todo : particles based on word length
 // todo : check to see what happens when there are no entries in the queue
@@ -17,7 +16,6 @@ int framesPerSecond = 30;
 int framesPerTransition = secondsPerTransition * framesPerSecond;
 int transitionTime = framesPerTransition;
 
-//String hiddenWord = "THIS IS A TEST";
 color hiddenColor = color(1);
 int textX;
 int textY;
@@ -41,11 +39,11 @@ void setup()
   size(1920, 1080, P2D);
   frameRate(framesPerSecond); 
   font = createFont("NeueHaasGroteskBlk.ttf", fontSize);  
- // rookieLogo = loadImage("rookie-logo.png");
   rookieLogo = loadImage("rookiebigger.png");
   textFont(font);
   textSize(fontSize);
   textAlign(LEFT, TOP);
+
   // create the pArray
   pArray = new ArrayList<Particle>();
   
@@ -59,6 +57,7 @@ void setup()
   
   // initialize the twitterQueue
   queueTweet(tweetText, userName);
+
   // Connect to twitter stream
   connectTwitter();
   
@@ -83,44 +82,18 @@ void draw()
   {
     ready = !ready;
     formatTweet(getQueueTweet());
-    // clear the existing array and populate with current one
-    
-//    // make a copy of current Particle array
-//    ArrayList<Particle> plTemp = new ArrayList(pArray);
-//    
-//    // clear the pArray
-//    pArray.clear();
-//    
-//    // repopulate it with the data from plTemp up to the weighted max amount of particles
-//    
-//    // set new maxParticles
-//    maxParticles = tweetLength * particleScale;
-//    println(maxParticles);
-//    int count = 0;
-//    pArray.ensureCapacity(maxParticles);
-//    while(pArray.size() < maxParticles)
-//    {
-//      pArray.add(plTemp.get(count));
-//      count++;
-//    }
-//    int temp = pArray.size();
-//    println(temp);
-//    //pArray.subList(maxParticles, temp).clear();
-//    
-//    // copy over entries up to the max particles
-//    
-    
-    ////
-      // reset the flags on the particles
+        
+    // reset the flags on the particles
+
     for(Particle p : pArray)
     {
       p.inTransit = false;
     }
-      // reset the loopTime counter
+
+    // reset the loopTime counter
     loopTime = transitionTime;
-  //// set destination for each particle
-  
-  // if its the image.. make the changes here
+
+    // if its the image.. make the changes here
     if(wordList.get(0).equals("@SYSTEM") == true)
     { 
       useLogo = true; 
@@ -133,8 +106,6 @@ void draw()
     if(useLogo)
     {
       loopTime = (int)framesPerTransition / 3;
-      //Len = rookieLogo.width;
-      //lines = rookieLogo.height;
       textX = (int)random(0, width - rookieLogo.width);
       textY = (int)random(0, height - rookieLogo.height);
       tint(hiddenColor);
@@ -217,10 +188,6 @@ void draw()
   }
   
   loopTime--;
-//  textSize(10);
-//  text("Queued Tweets : " + tweetQueue.size(),10,30);
-//  textSize(fontSize);
-  // draw the particles
 
   for(Particle p : pArray)
   {
@@ -229,7 +196,6 @@ void draw()
     p.display();
   }  
   
-  // println(frameRate);
 }
 
 

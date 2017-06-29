@@ -46,16 +46,8 @@ class Particle
   void display()
   {
     stroke(255);
-    
-    //noFill();
-    //fill(255 - location.dist(destination));
-    //rectMode(CORNER);
-
-    //int sizeScale = (int)random(1,2.5);
     int sizeScale = (int)random(1,2.5);
     strokeWeight(2 * sizeScale);
-    //ellipse(location.x, location.y, size*sizeScale, size * sizeScale);
-    //rect(location.x, location.y, size * sizeScale, size * sizeScale);
     point(location.x, location.y);
   }
 }

@@ -24,32 +24,18 @@ void formatTweet(String tweet)
 {
   wordList.clear(); // clears the word Arraylist
   String tempString = "";
-  
-//  if(tweet.length() < charsPerLine)  // tweet is less than max characters.. add straight to array
-//  {
-//    String[] cutString = split(tweet, ' ');
-//    for(int i = 0; i < cutString.length; i++)
-//    {
-//      wordList.append(cutString[i]);
-//      lines = 2;
-//      wordList.append(tweet);
-//    }
-//      ready = !ready;    
-//  }
-  
+ 
   if(ready)
   {
     // reset the line counter for next use;
     lines = 1; 
     // get total length of tweet
     tweetLength = tweet.length();  
+
     // build the string for the first line up to the total length of each line
     
     // cut the tweet into individual words using ' ' as delimeter
     String[] cutString =split(tweet, ' ');
-    //start adding words and counting characters
-    // for the amount of words in the tweet do the following
-    //println(cutString.length);
     
     // PROCESS //
     // add each word to the temp string.... line will equal 1
@@ -77,18 +63,17 @@ void formatTweet(String tweet)
     }
     // commit the last line
     wordList.append(tempString);
-    //println(lines);
     ready = !ready;
   }
   
-  println(lines);
+  // debug
+  println(lines); 
   int count = 1;
   
   for(String s : wordList)
   {
-
     println("Line : " + count + " > " + s);
-        count++;
+    count++;
   }
 }
 
@@ -119,11 +104,13 @@ String getQueueTweet()
   return temp;
 }
 
+
+// take a screenshot on keypress
 void keyPressed()
 {
-//  PImage saveFile = createImage(width, height, RGB);
-//  loadPixels();
-//  saveFile.pixels = pixels;
-//  saveFile.save("screenShot" + day() + "." + month() + "." + year() + "-" + hour() + "." + minute() + "." + second() + ".png");
-  //if(sketchFullScreen()) { !sketchFullScreen();}
+  PImage saveFile = createImage(width, height, RGB);
+  loadPixels();
+  saveFile.pixels = pixels;
+  saveFile.save("screenShot" + day() + "." + month() + "." + year() + "-" + hour() + "." + minute() + "." + second() + ".png");
+  if(sketchFullScreen()) { !sketchFullScreen(); }
 }
